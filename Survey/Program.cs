@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Survey
 {
@@ -21,6 +22,7 @@ namespace Survey
             string starSign = null;
 
             //switch case to apply day of month to zodiac sign
+            //also applied name of month to each statement for clearer print statement
             switch (month)
             {
                 case "1":
@@ -29,6 +31,7 @@ namespace Survey
                         starSign = "Capricorn";
                     }
                     else starSign = "Aquarius";
+                    month = "January";
                     break;
 
                 case "2":
@@ -37,6 +40,7 @@ namespace Survey
                         starSign = "Pisces";
                     }
                     else starSign = "Aquarius";
+                    month = "February";
                     break;
 
                 case "3":
@@ -45,6 +49,7 @@ namespace Survey
                         starSign = "Pisces";
                     }
                     else starSign = "Aries";
+                    month = "March";
                     break;
 
                 case "4":
@@ -53,6 +58,7 @@ namespace Survey
                         starSign = "Aries";
                     }
                     else starSign = "Taurus";
+                    month = "April";
                     break;
 
                 case "5":
@@ -61,6 +67,7 @@ namespace Survey
                         starSign = "Taurus";
                     }
                     else starSign = "Gemini";
+                    month = "May";
                     break;
 
                 case "6":
@@ -69,6 +76,7 @@ namespace Survey
                         starSign = "Gemini";
                     }
                     else starSign = "Cancer";
+                    month = "June";
                     break;
 
                 case "7":
@@ -77,6 +85,7 @@ namespace Survey
                         starSign = "Cancer";
                     }
                     else starSign = "Leo";
+                    month = "July";
                     break;
 
                 case "8":
@@ -85,6 +94,7 @@ namespace Survey
                         starSign = "Leo";
                     }
                     else starSign = "Virgo";
+                    month = "August";
                     break;
 
                 case "9":
@@ -93,6 +103,7 @@ namespace Survey
                         starSign = "Virgo";
                     }
                     else starSign = "Libra";
+                    month = "September";
                     break;
 
                 case "10":
@@ -101,6 +112,7 @@ namespace Survey
                         starSign = "Libra";
                     }
                     else starSign = "Scorpio";
+                    month = "October";
                     break;
 
                 case "11":
@@ -109,6 +121,7 @@ namespace Survey
                         starSign = "Scorpio";
                     }
                     else starSign = "Sagittarius";
+                    month = "November";
                     break;
 
                 case "12":
@@ -117,6 +130,7 @@ namespace Survey
                         starSign = "Sagittarius";
                     }
                     else starSign = "Capricorn";
+                    month = "December";
                     break;
             }
 
@@ -126,7 +140,6 @@ namespace Survey
             Console.WriteLine("Your birth month is: {0}", month);
             Console.WriteLine("Your zodiac sign is: {0}", starSign);
 
-
         }
 
         static string TryAnswer()
@@ -134,12 +147,13 @@ namespace Survey
             var question = Console.ReadLine();
             if (question == "")
             {
-                Console.WriteLine("You didn't type anything, please try again:");
+                Console.WriteLine("Invalid input, please try again:");
                 return Console.ReadLine();
             }
             return question;
         }
 
+        //validation for days of the month, must be between 1-31
         static string dayCheck()
         {
             var dateInput = Console.ReadLine();
@@ -152,11 +166,12 @@ namespace Survey
             return dateInput;
         }
 
+        //validation for month input, must be between 1-12
         static string monthCheck()
         {
             var monthInput = Console.ReadLine();
             var intMonthInput = int.Parse(monthInput);
-            if (intMonthInput > 31 || intMonthInput < 1)
+            if (intMonthInput > 12 || intMonthInput < 1)
             {
                 Console.WriteLine("Invalid input, please try again:");
                 return Console.ReadLine();
