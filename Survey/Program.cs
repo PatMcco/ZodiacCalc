@@ -3,6 +3,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Survey
 {
+
+    enum Month
+    {
+        January = 1,
+        February = 2,
+        March = 3,
+        April = 4,
+        May = 5,
+        June = 6,
+        July = 7,
+        August = 8,
+        September = 9,
+        October = 10,
+        November = 11,
+        December = 12
+    }
     class Program
     {
         static void Main(string[] args)
@@ -14,130 +30,130 @@ namespace Survey
             var age = TryAnswer();
 
             Console.WriteLine("What month were you born in? Please enter the number.");
-            var month = monthCheck();
+            var birthMonth = monthCheck();
 
-            Console.WriteLine("What day were you born on?", month);
+            Console.WriteLine("What day were you born on?", birthMonth);
             var dayOfMonth = dayCheck();
 
             string starSign = null;
 
             //switch case to apply day of month to zodiac sign
             //also applied name of month to each statement for clearer print statement
-            switch (month)
+            switch (int.Parse(birthMonth))
             {
-                case "1":
+                case (int)Month.January:
                     if (int.Parse(dayOfMonth) < 20)
                     {
                         starSign = "Capricorn";
                     }
                     else starSign = "Aquarius";
-                    month = "January";
+                    birthMonth = "January";
                     break;
 
-                case "2":
+                case (int)Month.February:
                     if (int.Parse(dayOfMonth) > 18)
                     {
                         starSign = "Pisces";
                     }
                     else starSign = "Aquarius";
-                    month = "February";
+                    birthMonth = "February";
                     break;
 
-                case "3":
+                case (int)Month.March:
                     if (int.Parse(dayOfMonth) < 21)
                     {
                         starSign = "Pisces";
                     }
                     else starSign = "Aries";
-                    month = "March";
+                    birthMonth = "March";
                     break;
 
-                case "4":
+                case (int)Month.April:
                     if (int.Parse(dayOfMonth) < 20)
                     {
                         starSign = "Aries";
                     }
                     else starSign = "Taurus";
-                    month = "April";
+                    birthMonth = "April";
                     break;
 
-                case "5":
+                case (int)Month.May:
                     if (int.Parse(dayOfMonth) < 21)
                     {
                         starSign = "Taurus";
                     }
                     else starSign = "Gemini";
-                    month = "May";
+                    birthMonth = "May";
                     break;
 
-                case "6":
+                case (int)Month.June:
                     if (int.Parse(dayOfMonth) < 21)
                     {
                         starSign = "Gemini";
                     }
                     else starSign = "Cancer";
-                    month = "June";
+                    birthMonth = "June";
                     break;
 
-                case "7":
+                case (int)Month.July:
                     if (int.Parse(dayOfMonth) < 23)
                     {
                         starSign = "Cancer";
                     }
                     else starSign = "Leo";
-                    month = "July";
+                    birthMonth = "July";
                     break;
 
-                case "8":
+                case (int)Month.August:
                     if (int.Parse(dayOfMonth) < 23)
                     {
                         starSign = "Leo";
                     }
                     else starSign = "Virgo";
-                    month = "August";
+                    birthMonth = "August";
                     break;
 
-                case "9":
+                case (int)Month.September:
                     if (int.Parse(dayOfMonth) < 23)
                     {
                         starSign = "Virgo";
                     }
                     else starSign = "Libra";
-                    month = "September";
+                    birthMonth = "September";
                     break;
 
-                case "10":
+                case (int)Month.October:
                     if (int.Parse(dayOfMonth) < 23)
                     {
                         starSign = "Libra";
                     }
                     else starSign = "Scorpio";
-                    month = "October";
+                    birthMonth = "October";
                     break;
 
-                case "11":
+                case (int)Month.November:
                     if (int.Parse(dayOfMonth) < 22)
                     {
                         starSign = "Scorpio";
                     }
                     else starSign = "Sagittarius";
-                    month = "November";
+                    birthMonth = "November";
                     break;
 
-                case "12":
+                case (int)Month.December:
                     if (int.Parse(dayOfMonth) < 22)
                     {
                         starSign = "Sagittarius";
                     }
                     else starSign = "Capricorn";
-                    month = "December";
+                    birthMonth = "December";
                     break;
             }
 
 
             Console.WriteLine("Your name is: {0}", name);
             Console.WriteLine("Your age is: {0}", age);
-            Console.WriteLine("Your birth month is: {0}", month);
+            Console.WriteLine("Your birth month is: {0}", birthMonth);
             Console.WriteLine("Your zodiac sign is: {0}", starSign);
 
         }
@@ -145,10 +161,10 @@ namespace Survey
         static string TryAnswer()
         {
             var question = Console.ReadLine();
-            if (question == "")
+            while (question == "")
             {
                 Console.WriteLine("Invalid input, please try again:");
-                return Console.ReadLine();
+                return TryAnswer();
             }
             return question;
         }
@@ -158,10 +174,10 @@ namespace Survey
         {
             var dateInput = Console.ReadLine();
             var intDateInput = int.Parse(dateInput);
-            if (intDateInput > 31 || intDateInput < 1)
+            while (intDateInput > 31 || intDateInput < 1)
             {
                 Console.WriteLine("Invalid input, please try again:");
-                return Console.ReadLine();
+                return dayCheck();
             }
             return dateInput;
         }
@@ -171,10 +187,10 @@ namespace Survey
         {
             var monthInput = Console.ReadLine();
             var intMonthInput = int.Parse(monthInput);
-            if (intMonthInput > 12 || intMonthInput < 1)
+            while (intMonthInput > 12 || intMonthInput < 1)
             {
                 Console.WriteLine("Invalid input, please try again:");
-                return Console.ReadLine();
+                return monthCheck();
             }
             return monthInput;
         }
